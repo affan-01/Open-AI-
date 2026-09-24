@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<!--
+  Open AI Path — an open-source AI research curriculum.
+  License: MIT. Curriculum data is in path.json.
+  Every resource linked here is free to read.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Open AI Path — a free curriculum into AI research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F6F7F2; --grid:#DFE5EA; --ink:#1E2A44; --pencil:#5B6478; --rule:#C9D2DC;
+  --mark:#F3E15A; --mark-ink:#1E2A44; --done:#2E6B4F; --card:#FFFFFF;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Source Serif 4", Georgia, "Times New Roman", serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#131D33; --grid:#1D2A47; --ink:#E6EBF3; --pencil:#9BA7BD; --rule:#2B3B5E;
+    --mark:#E3D24A; --mark-ink:#131D33; --done:#7FC8A2; --card:#18233D;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#131D33; --grid:#1D2A47; --ink:#E6EBF3; --pencil:#9BA7BD; --rule:#2B3B5E;
+  --mark:#E3D24A; --mark-ink:#131D33; --done:#7FC8A2; --card:#18233D;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+body{
+  margin:0;background-color:var(--paper);color:var(--ink);
+  font-family:var(--body);font-size:1.0625rem;line-height:1.6;
+  background-image:
+    linear-gradient(var(--grid) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:28px 28px;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--mark);outline-offset:2px;border-radius:3px}
+.wrap{max-width:52rem;margin:0 auto;padding:3rem 1.25rem 5rem}
+
+header h1{
+  font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,7vw,4.2rem);
+  line-height:1.02;letter-spacing:-.02em;margin:0 0 1rem;max-width:14ch;
+}
+header p{max-width:38rem;color:var(--pencil);margin:0 0 .5rem}
+
+/* The path: one node per module, filled as lessons are checked */
+.path{margin:2.5rem 0 1rem;position:relative;overflow-x:auto;padding:.5rem 0 1rem}
+.path ol{list-style:none;margin:0;padding:0;display:flex;gap:0;min-width:36rem;position:relative}
+.path ol::before{content:"";position:absolute;left:1rem;right:1rem;top:1.05rem;height:2px;background:var(--rule)}
+.path li{flex:1;display:flex;flex-direction:column;align-items:center;position:relative}
+.node{
+  width:2.1rem;height:2.1rem;border-radius:50%;border:2px solid var(--ink);background:var(--paper);
+  position:relative;cursor:pointer;padding:0;overflow:hidden;
+}
+.node span{position:absolute;left:0;right:0;bottom:0;background:var(--mark);transition:height .4s ease}
+.node b{position:relative;font-family:var(--display);font-size:.8rem;color:var(--ink)}
+.node.full{background:var(--mark)}
+.path small{font-family:var(--display);font-size:.72rem;color:var(--pencil);margin-top:.4rem;text-align:center;line-height:1.2;max-width:5.5rem}
+.tally{font-family:var(--display);font-size:1rem;margin:0}
+.tally strong{background:var(--mark);color:var(--mark-ink);padding:0 .3em}
+
+.tools{display:flex;flex-wrap:wrap;gap:.75rem;align-items:center;margin:2rem 0 1rem}
+.tools input[type=search]{
+  flex:1 1 14rem;font:inherit;font-size:1rem;padding:.6rem .8rem;border:2px solid var(--ink);
+  background:var(--card);color:var(--ink);border-radius:4px;
+}
+.btn{
+  font-family:var(--display);font-size:.9rem;font-weight:500;padding:.55rem .9rem;border:2px solid var(--ink);
+  background:transparent;color:var(--ink);border-radius:4px;cursor:pointer;
+}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+
+section.module{margin-top:3rem}
+section.module > h2{
+  font-family:var(--display);font-weight:700;font-size:1.6rem;letter-spacing:-.01em;
+  margin:0 0 .25rem;display:flex;gap:.75rem;align-items:baseline;
+}
+section.module > h2 .num{font-size:1rem;color:var(--pencil);min-width:1.6rem}
+.mod-intro{color:var(--pencil);margin:0 0 1rem 2.35rem;max-width:36rem}
+
+.lesson{border-top:1px solid var(--rule);background:var(--card)}
+.lesson:last-child{border-bottom:1px solid var(--rule)}
+.lesson-head{display:flex;align-items:center;gap:.75rem;padding:.7rem .8rem}
+.lesson-head input{width:1.25rem;height:1.25rem;accent-color:var(--done);flex:none;cursor:pointer}
+.lesson-head button{
+  flex:1;text-align:left;background:none;border:0;color:var(--ink);font:inherit;font-weight:600;
+  padding:.1rem 0;cursor:pointer;display:flex;justify-content:space-between;gap:1rem;
+}
+.lesson-head button .chev{color:var(--pencil);transition:transform .2s ease;flex:none}
+.lesson.open .chev{transform:rotate(90deg)}
+.lesson.done .lesson-head button .t{text-decoration:line-through;text-decoration-color:var(--done);text-decoration-thickness:2px;color:var(--pencil)}
+.lesson-body{display:none;padding:0 .8rem 1.1rem 2.8rem}
+.lesson.open .lesson-body{display:block}
+.lesson-body p{margin:.2rem 0 .8rem;max-width:40rem}
+.lesson-body .build{border-left:4px solid var(--mark);padding:.1rem 0 .1rem .8rem}
+.lesson-body .build em{font-style:normal;font-family:var(--display);font-weight:700}
+.lesson-body ul{margin:.3rem 0 .9rem;padding-left:1.1rem}
+.lesson-body li{margin:.2rem 0}
+.lesson-body textarea{
+  width:100%;min-height:5rem;font:inherit;font-size:.95rem;padding:.6rem;border:1px solid var(--rule);
+  background:var(--paper);color:var(--ink);border-radius:4px;resize:vertical;
+}
+.lesson-body label{font-family:var(--display);font-size:.85rem;color:var(--pencil);display:block;margin-bottom:.25rem}
+.hidden{display:none!important}
+.empty{color:var(--pencil);margin-top:2rem}
+
+footer{margin-top:4rem;color:var(--pencil);font-size:.95rem;max-width:40rem}
+footer h2{font-family:var(--display);color:var(--ink);font-size:1.2rem}
+#toast{position:fixed;left:50%;bottom:calc(1.5rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);
+  background:var(--ink);color:var(--paper);font-family:var(--display);padding:.5rem 1rem;border-radius:4px;opacity:0;transition:opacity .2s;pointer-events:none}
+#toast.show{opacity:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>Open AI Path</h1>
+  <p>A free, open-source route from high-school math to reading and reproducing AI research. Twelve modules, each lesson paired with free material and something to build. Check lessons off as you go; your progress and notes stay in this browser.</p>
+  <nav class="path" aria-label="Modules">
+    <ol id="path"></ol>
+  </nav>
+  <p class="tally" id="tally"></p>
+</header>
+
+<div class="tools">
+  <input type="search" id="q" placeholder="Search lessons, papers, topics" aria-label="Search lessons">
+  <button class="btn" id="remaining" aria-pressed="false">Hide finished</button>
+  <button class="btn" id="copy">Copy curriculum JSON</button>
+  <a class="btn" href="https://github.com/affan-01/Open-AI-" target="_blank" rel="noopener" style="text-decoration:none">View on GitHub</a>
+</div>
+
+<main id="modules"></main>
+<p class="empty hidden" id="empty">No lessons match that search. Try a broader word like “attention” or “gradient”.</p>
+
+<footer>
+  <h2>Make it yours</h2>
+  <p>The whole curriculum lives in <code>path.json</code>. Edit it to reorder modules, swap resources, or add lessons, and this page updates. MIT licensed, and contributions are welcome on <a href="https://github.com/affan-01/Open-AI-">GitHub</a>. Every link points to free material from the original authors.</p>
+  <p>How to use it: do the build task before you mark a lesson done. Reading about backprop is not the same as writing it.</p>
+</footer>
+</div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ---------- Curriculum data lives in path.json — edit that file to change the course ---------- */
+const SHORT=["Math","Python","Classic ML","From scratch","PyTorch","Training","Vision","Attention","LLMs","RL","Alignment","Practice"];
+let CURRICULUM=[], total=0;
+
+/* ---------- State (per-viewer, this browser only) ---------- */
+const KEY="open-ai-path:v1";
+let state={done:{},notes:{}};
+try{const s=JSON.parse(localStorage.getItem(KEY)||"null");if(s&&s.done)state={done:s.done||{},notes:s.notes||{}};}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch(e){}}
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const id=(m,l)=>`m${m}l${l}`;
+
+/* ---------- Render ---------- */
+function render(){
+  $("#path").innerHTML=CURRICULUM.map((m,i)=>`<li><button class="node" data-go="${i}" aria-label="Module ${i+1}: ${esc(m.t)}"><span></span><b>${i+1}</b></button><small>${esc(m.short)}</small></li>`).join("");
+  $("#modules").innerHTML=CURRICULUM.map((m,i)=>`
+  <section class="module" id="mod-${i}">
+    <h2><span class="num">${i+1}</span>${esc(m.t)}</h2>
+    <p class="mod-intro">${esc(m.intro)}</p>
+    <div>${m.lessons.map((L,j)=>{const k=id(i,j);return `
+      <article class="lesson" data-k="${k}" data-text="${esc((L[0]+" "+L[1]+" "+L[2]+" "+L[3].map(r=>r[0]).join(" ")+" "+m.t).toLowerCase())}">
+        <div class="lesson-head">
+          <input type="checkbox" data-check="${k}" aria-label="Mark “${esc(L[0])}” as done">
+          <button aria-expanded="false" aria-controls="b-${k}"><span class="t">${esc(L[0])}</span><span class="chev" aria-hidden="true">›</span></button>
+        </div>
+        <div class="lesson-body" id="b-${k}">
+          <p>${esc(L[1])}</p>
+          <p class="build"><em>Build:</em> ${esc(L[2])}</p>
+          <ul>${L[3].map(r=>`<li><a href="${esc(r[1])}" target="_blank" rel="noopener">${esc(r[0])}</a></li>`).join("")}</ul>
+          <label for="n-${k}">Your notes</label>
+          <textarea id="n-${k}" data-note="${k}" placeholder="What clicked, what didn't, links to your code"></textarea>
+        </div>
+      </article>`}).join("")}</div>
+  </section>`).join("");
+  document.querySelectorAll("[data-check]").forEach(c=>{c.checked=!!state.done[c.dataset.check]});
+  document.querySelectorAll("[data-note]").forEach(t=>{t.value=state.notes[t.dataset.note]||""});
+  refresh();
+}
+
+function refresh(){
+  let n=0;
+  CURRICULUM.forEach((m,i)=>{
+    const d=m.lessons.filter((_,j)=>state.done[id(i,j)]).length; n+=d;
+    const node=document.querySelector(`[data-go="${i}"]`);
+    node.querySelector("span").style.height=(d/m.lessons.length*100)+"%";
+    node.classList.toggle("full",d===m.lessons.length);
+    node.title=`${m.t}: ${d} of ${m.lessons.length} done`;
+  });
+  document.querySelectorAll(".lesson").forEach(a=>a.classList.toggle("done",!!state.done[a.dataset.k]));
+  $("#tally").innerHTML=n===0?`${total} lessons across ${CURRICULUM.length} modules. Start with module 1 or jump to what you need.`
+    :n===total?`<strong>All ${total} lessons done.</strong> Time to reproduce a paper of your own.`
+    :`<strong>${n} of ${total}</strong> lessons done.`;
+  filter();
+}
+
+function filter(){
+  const q=$("#q").value.trim().toLowerCase(), hide=$("#remaining").getAttribute("aria-pressed")==="true";
+  let any=false;
+  document.querySelectorAll("section.module").forEach(s=>{
+    let vis=0;
+    s.querySelectorAll(".lesson").forEach(a=>{
+      const show=(!q||a.dataset.text.includes(q))&&!(hide&&state.done[a.dataset.k]);
+      a.classList.toggle("hidden",!show); if(show)vis++;
+    });
+    s.classList.toggle("hidden",vis===0); if(vis)any=true;
+  });
+  $("#empty").classList.toggle("hidden",any);
+  $("#empty").textContent=hide&&!q?"Every lesson is done. Turn off “Hide finished” to review.":"No lessons match that search. Try a broader word like “attention” or “gradient”.";
+}
+
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove("show"),1800);}
+
+/* ---------- Events ---------- */
+document.addEventListener("click",e=>{
+  const go=e.target.closest("[data-go]");
+  if(go){$("#mod-"+go.dataset.go).scrollIntoView();return;}
+  const head=e.target.closest(".lesson-head button");
+  if(head){const a=head.closest(".lesson");const o=a.classList.toggle("open");head.setAttribute("aria-expanded",o);}
+});
+document.addEventListener("change",e=>{
+  const k=e.target.dataset.check;
+  if(k){if(e.target.checked)state.done[k]=1;else delete state.done[k];save();refresh();}
+});
+let noteTimer;
+document.addEventListener("input",e=>{
+  const k=e.target.dataset.note;
+  if(k){state.notes[k]=e.target.value;if(!e.target.value)delete state.notes[k];clearTimeout(noteTimer);noteTimer=setTimeout(save,300);}
+});
+$("#q").addEventListener("input",filter);
+$("#remaining").addEventListener("click",e=>{
+  const p=e.currentTarget.getAttribute("aria-pressed")!=="true";
+  e.currentTarget.setAttribute("aria-pressed",p);filter();
+});
+$("#copy").addEventListener("click",async()=>{
+  const json=JSON.stringify(RAW,null,2);
+  try{await navigator.clipboard.writeText(json);toast("Curriculum JSON copied");}
+  catch(err){const w=document.createElement("textarea");w.value=json;document.body.appendChild(w);w.select();
+    try{document.execCommand("copy");toast("Curriculum JSON copied");}catch(e2){toast("Copy blocked by the browser");}w.remove();}
+});
+
+let RAW=[];
+fetch("path.json").then(r=>{if(!r.ok)throw new Error(r.status);return r.json();}).then(data=>{
+  RAW=data;
+  CURRICULUM=data.map((m,i)=>({t:m.module,short:m.short||SHORT[i]||m.module.split(" ")[0],intro:m.intro||"",
+    lessons:(m.lessons||[]).map(L=>[L.title,L.understand||"",L.build||"",(L.resources||[]).map(r=>[r.label,r.url])])}));
+  total=CURRICULUM.reduce((a,m)=>a+m.lessons.length,0);
+  render();
+}).catch(err=>{
+  document.getElementById("modules").innerHTML='<p class="empty">Couldn\'t load path.json. If you opened this file directly, run a local server in this folder instead: <code>python3 -m http.server</code>, then visit http://localhost:8000.</p>';
+});
+</script>
+</body>
+</html>
