@@ -1,0 +1,1025 @@
+[
+  {
+    "module": "Math you'll actually use",
+    "intro": "Just enough linear algebra, calculus, probability and information theory to read a paper without skipping the equations.",
+    "lessons": [
+      {
+        "title": "Vectors, matrices, and what a matrix does",
+        "understand": "See a matrix as a transformation of space and a dot product as a measure of alignment.",
+        "build": "Write matrix multiplication in pure Python, then check it against NumPy on random inputs.",
+        "resources": [
+          {
+            "label": "3Blue1Brown: Essence of Linear Algebra",
+            "url": "https://www.3blue1brown.com/topics/linear-algebra"
+          },
+          {
+            "label": "Mathematics for Machine Learning (book)",
+            "url": "https://mml-book.github.io/"
+          }
+        ]
+      },
+      {
+        "title": "Eigenvectors, SVD, and low-rank structure",
+        "understand": "Why the same decomposition powers PCA, image compression, and LoRA adapters.",
+        "build": "Compress a photo with truncated SVD at ranks 5, 20, and 50 and compare file size to quality.",
+        "resources": [
+          {
+            "label": "MIT 18.06 Linear Algebra (Strang)",
+            "url": "https://ocw.mit.edu/courses/18-06-linear-algebra-spring-2010/"
+          },
+          {
+            "label": "Mathematics for Machine Learning, ch. 4",
+            "url": "https://mml-book.github.io/"
+          }
+        ]
+      },
+      {
+        "title": "Derivatives, gradients, and the chain rule",
+        "understand": "A gradient points uphill; the chain rule is backpropagation written small.",
+        "build": "Compute an analytic gradient for a small function and verify it with finite differences.",
+        "resources": [
+          {
+            "label": "3Blue1Brown: Essence of Calculus",
+            "url": "https://www.3blue1brown.com/topics/calculus"
+          },
+          {
+            "label": "The Matrix Calculus You Need for Deep Learning",
+            "url": "https://explained.ai/matrix-calculus/"
+          }
+        ]
+      },
+      {
+        "title": "Probability and distributions",
+        "understand": "Random variables, expectation, Bayes' rule, and why Gaussians appear everywhere.",
+        "build": "Simulate the central limit theorem by averaging dice rolls and plotting the histogram.",
+        "resources": [
+          {
+            "label": "Seeing Theory (interactive)",
+            "url": "https://seeing-theory.brown.edu/"
+          },
+          {
+            "label": "Mathematics for Machine Learning, ch. 6",
+            "url": "https://mml-book.github.io/"
+          }
+        ]
+      },
+      {
+        "title": "Maximum likelihood and loss functions",
+        "understand": "Mean squared error and cross-entropy both fall out of maximizing likelihood.",
+        "build": "On paper, derive cross-entropy loss from a categorical likelihood. Then code it.",
+        "resources": [
+          {
+            "label": "Dive into Deep Learning: softmax regression",
+            "url": "https://d2l.ai/chapter_linear-classification/softmax-regression.html"
+          }
+        ]
+      },
+      {
+        "title": "Entropy, KL divergence, and information",
+        "understand": "The quantities behind cross-entropy, distillation, and the KL penalty in RLHF.",
+        "build": "Compute KL(P‖Q) and KL(Q‖P) for two small distributions and explain why they differ.",
+        "resources": [
+          {
+            "label": "Chris Olah: Visual Information Theory",
+            "url": "https://colah.github.io/posts/2015-09-Visual-Information/"
+          }
+        ]
+      },
+      {
+        "title": "Optimization basics",
+        "understand": "Gradient descent, learning rates, convexity, and saddle points.",
+        "build": "Animate gradient descent on a 2D bowl with a too-small, good, and too-large learning rate.",
+        "resources": [
+          {
+            "label": "Dive into Deep Learning: Optimization",
+            "url": "https://d2l.ai/chapter_optimization/index.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Python and NumPy for ML",
+    "intro": "The tools you'll use every day. Shapes and broadcasting cause more bugs than any math.",
+    "lessons": [
+      {
+        "title": "Arrays, shapes, and broadcasting",
+        "understand": "Predict the shape of any NumPy expression before you run it.",
+        "build": "Write ten broadcasting expressions, guess each output shape, then check.",
+        "resources": [
+          {
+            "label": "CS231n Python and NumPy tutorial",
+            "url": "https://cs231n.github.io/python-numpy-tutorial/"
+          },
+          {
+            "label": "NumPy quickstart",
+            "url": "https://numpy.org/doc/stable/user/quickstart.html"
+          }
+        ]
+      },
+      {
+        "title": "Vectorization over loops",
+        "understand": "Why a single matrix operation beats a Python loop by orders of magnitude.",
+        "build": "Compute pairwise distances between 2,000 points with loops, then vectorized. Time both.",
+        "resources": [
+          {
+            "label": "NumPy: broadcasting",
+            "url": "https://numpy.org/doc/stable/user/basics.broadcasting.html"
+          }
+        ]
+      },
+      {
+        "title": "Loading and cleaning real data",
+        "understand": "Read, filter, and group tabular data without reaching for a spreadsheet.",
+        "build": "Load a public CSV, handle missing values, and summarize three columns.",
+        "resources": [
+          {
+            "label": "10 minutes to pandas",
+            "url": "https://pandas.pydata.org/docs/user_guide/10min.html"
+          }
+        ]
+      },
+      {
+        "title": "Plotting to see what's happening",
+        "understand": "Make the plots you'll need: loss curves, histograms, scatter plots.",
+        "build": "Plot a noisy sine wave, its histogram, and a moving average on one figure.",
+        "resources": [
+          {
+            "label": "Matplotlib tutorials",
+            "url": "https://matplotlib.org/stable/tutorials/index.html"
+          }
+        ]
+      },
+      {
+        "title": "Reproducible work: git, seeds, environments",
+        "understand": "Anyone, including future you, can rerun your experiment and get the same numbers.",
+        "build": "Put a small project in git with a pinned requirements file and a fixed random seed.",
+        "resources": [
+          {
+            "label": "Pro Git (free book)",
+            "url": "https://git-scm.com/book/en/v2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Classical machine learning",
+    "intro": "The ideas deep learning inherited: fitting, generalization, and honest evaluation.",
+    "lessons": [
+      {
+        "title": "Linear regression from scratch",
+        "understand": "Fit a line with the closed-form solution and with gradient descent, and see they agree.",
+        "build": "Implement both methods in NumPy on a synthetic dataset.",
+        "resources": [
+          {
+            "label": "An Introduction to Statistical Learning (free)",
+            "url": "https://www.statlearning.com/"
+          },
+          {
+            "label": "Stanford CS229",
+            "url": "https://cs229.stanford.edu/"
+          }
+        ]
+      },
+      {
+        "title": "Logistic regression and classification",
+        "understand": "Turn a linear model into a probability with the sigmoid, trained with cross-entropy.",
+        "build": "Build a two-class classifier from scratch and draw its decision boundary.",
+        "resources": [
+          {
+            "label": "An Introduction to Statistical Learning, ch. 4",
+            "url": "https://www.statlearning.com/"
+          }
+        ]
+      },
+      {
+        "title": "Bias, variance, and regularization",
+        "understand": "Why models overfit and how L1 and L2 penalties pull them back.",
+        "build": "Fit polynomials of degree 1 to 15 and plot train vs. validation error.",
+        "resources": [
+          {
+            "label": "scikit-learn: underfitting vs. overfitting",
+            "url": "https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html"
+          }
+        ]
+      },
+      {
+        "title": "Splits and cross-validation",
+        "understand": "Keep a test set untouched and use validation to make decisions.",
+        "build": "Run 5-fold cross-validation by hand and compare it to scikit-learn's result.",
+        "resources": [
+          {
+            "label": "scikit-learn: cross-validation",
+            "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+          }
+        ]
+      },
+      {
+        "title": "Trees, forests, and boosting",
+        "understand": "Still the best choice for many tabular problems.",
+        "build": "Compare a decision tree, random forest, and gradient boosting on one dataset.",
+        "resources": [
+          {
+            "label": "scikit-learn: ensemble methods",
+            "url": "https://scikit-learn.org/stable/modules/ensemble.html"
+          }
+        ]
+      },
+      {
+        "title": "Clustering and PCA",
+        "understand": "Find structure without labels and reduce dimensions without losing much.",
+        "build": "Run PCA on MNIST digits, plot the first two components, then cluster them with k-means.",
+        "resources": [
+          {
+            "label": "scikit-learn: decomposition",
+            "url": "https://scikit-learn.org/stable/modules/decomposition.html"
+          }
+        ]
+      },
+      {
+        "title": "Choosing the right metric",
+        "understand": "Accuracy lies on imbalanced data; precision, recall, and AUC tell the truth.",
+        "build": "Train a classifier on imbalanced data and report every metric. Which one would you ship on?",
+        "resources": [
+          {
+            "label": "scikit-learn: model evaluation",
+            "url": "https://scikit-learn.org/stable/modules/model_evaluation.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Neural networks from scratch",
+    "intro": "Build it yourself once, and every framework afterward is just convenience.",
+    "lessons": [
+      {
+        "title": "Neurons and multilayer perceptrons",
+        "understand": "A network is stacked linear maps with nonlinearities in between.",
+        "build": "Hand-code a two-layer MLP forward pass in NumPy.",
+        "resources": [
+          {
+            "label": "Neural Networks and Deep Learning (Nielsen)",
+            "url": "http://neuralnetworksanddeeplearning.com/"
+          }
+        ]
+      },
+      {
+        "title": "Backpropagation by hand",
+        "understand": "Gradients flow backward through a computation graph, one local derivative at a time.",
+        "build": "Derive and implement the backward pass for your MLP. Check it numerically.",
+        "resources": [
+          {
+            "label": "CS231n: backpropagation intuitions",
+            "url": "https://cs231n.github.io/optimization-2/"
+          }
+        ]
+      },
+      {
+        "title": "Build a tiny autograd engine",
+        "understand": "How PyTorch's autograd works, in about 100 lines.",
+        "build": "Follow along and build a scalar autograd engine, then train a small net with it.",
+        "resources": [
+          {
+            "label": "Karpathy: Neural Networks, Zero to Hero",
+            "url": "https://karpathy.ai/zero-to-hero.html"
+          },
+          {
+            "label": "micrograd on GitHub",
+            "url": "https://github.com/karpathy/micrograd"
+          }
+        ]
+      },
+      {
+        "title": "Activation functions",
+        "understand": "Why ReLU replaced sigmoid, and what GELU and SwiGLU change.",
+        "build": "Plot each activation and its derivative. Note where gradients vanish.",
+        "resources": [
+          {
+            "label": "Dive into Deep Learning: MLPs",
+            "url": "https://d2l.ai/chapter_multilayer-perceptrons/mlp.html"
+          }
+        ]
+      },
+      {
+        "title": "A character-level language model",
+        "understand": "Predict the next character, the smallest version of what LLMs do.",
+        "build": "Build the bigram and MLP models from the makemore lectures and sample names.",
+        "resources": [
+          {
+            "label": "makemore on GitHub",
+            "url": "https://github.com/karpathy/makemore"
+          },
+          {
+            "label": "Zero to Hero lectures 2–4",
+            "url": "https://karpathy.ai/zero-to-hero.html"
+          }
+        ]
+      },
+      {
+        "title": "Initialization and dead activations",
+        "understand": "Bad initial weights can stop a network from learning at all.",
+        "build": "Plot activation histograms per layer with naive vs. Kaiming initialization.",
+        "resources": [
+          {
+            "label": "He et al.: Delving Deep into Rectifiers",
+            "url": "https://arxiv.org/abs/1502.01852"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "PyTorch",
+    "intro": "The framework most research code is written in.",
+    "lessons": [
+      {
+        "title": "Tensors and devices",
+        "understand": "Tensors are NumPy arrays that know about GPUs and gradients.",
+        "build": "Port your NumPy MLP to PyTorch tensors and run it on GPU if you have one (Colab works).",
+        "resources": [
+          {
+            "label": "PyTorch: Learn the Basics",
+            "url": "https://pytorch.org/tutorials/beginner/basics/intro.html"
+          }
+        ]
+      },
+      {
+        "title": "Autograd in practice",
+        "understand": "requires_grad, .backward(), and when gradients accumulate.",
+        "build": "Reproduce one micrograd example in PyTorch and confirm the gradients match.",
+        "resources": [
+          {
+            "label": "PyTorch: autograd tutorial",
+            "url": "https://pytorch.org/tutorials/beginner/basics/autogradqs_tutorial.html"
+          }
+        ]
+      },
+      {
+        "title": "Modules and model building",
+        "understand": "Organize parameters with nn.Module so models compose cleanly.",
+        "build": "Rewrite your MLP as an nn.Module with a configurable number of layers.",
+        "resources": [
+          {
+            "label": "PyTorch: build the neural network",
+            "url": "https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html"
+          }
+        ]
+      },
+      {
+        "title": "Datasets and DataLoaders",
+        "understand": "Batching, shuffling, and loading data in parallel.",
+        "build": "Write a custom Dataset for a folder of images or a CSV file.",
+        "resources": [
+          {
+            "label": "PyTorch: datasets and dataloaders",
+            "url": "https://pytorch.org/tutorials/beginner/basics/data_tutorial.html"
+          }
+        ]
+      },
+      {
+        "title": "A clean training loop",
+        "understand": "The loop you'll write a hundred times: forward, loss, backward, step, log.",
+        "build": "Train on FashionMNIST with a validation pass each epoch and a loss plot.",
+        "resources": [
+          {
+            "label": "PyTorch: optimization loop",
+            "url": "https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html"
+          }
+        ]
+      },
+      {
+        "title": "Saving, loading, and resuming",
+        "understand": "Checkpoints let long runs survive crashes.",
+        "build": "Save model and optimizer state, kill training, and resume from the checkpoint.",
+        "resources": [
+          {
+            "label": "PyTorch: save and load",
+            "url": "https://pytorch.org/tutorials/beginner/basics/saveloadrun_tutorial.html"
+          }
+        ]
+      },
+      {
+        "title": "Profiling and speed",
+        "understand": "Find out whether you're bound by data loading, compute, or memory.",
+        "build": "Profile one training step and fix the slowest part.",
+        "resources": [
+          {
+            "label": "PyTorch profiler recipe",
+            "url": "https://pytorch.org/tutorials/recipes/recipes/profiler_recipe.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Training deep networks well",
+    "intro": "The practical craft that separates a run that works from one that silently doesn't.",
+    "lessons": [
+      {
+        "title": "A recipe for training",
+        "understand": "Start simple, overfit one batch, then add complexity one piece at a time.",
+        "build": "Apply the recipe to a new dataset and keep a short log of every decision.",
+        "resources": [
+          {
+            "label": "Karpathy: A Recipe for Training Neural Networks",
+            "url": "https://karpathy.github.io/2019/04/25/recipe/"
+          }
+        ]
+      },
+      {
+        "title": "Optimizers: SGD to AdamW",
+        "understand": "Momentum, adaptive learning rates, and why weight decay is separated in AdamW.",
+        "build": "Train the same model with SGD, Adam, and AdamW and compare curves.",
+        "resources": [
+          {
+            "label": "Adam paper",
+            "url": "https://arxiv.org/abs/1412.6980"
+          },
+          {
+            "label": "AdamW paper",
+            "url": "https://arxiv.org/abs/1711.05101"
+          }
+        ]
+      },
+      {
+        "title": "Normalization layers",
+        "understand": "BatchNorm and LayerNorm keep activations in a healthy range.",
+        "build": "Add BatchNorm to a deep MLP and compare training speed with and without it.",
+        "resources": [
+          {
+            "label": "Batch Normalization",
+            "url": "https://arxiv.org/abs/1502.03167"
+          },
+          {
+            "label": "Layer Normalization",
+            "url": "https://arxiv.org/abs/1607.06450"
+          }
+        ]
+      },
+      {
+        "title": "Regularization",
+        "understand": "Dropout, weight decay, and data augmentation reduce overfitting in different ways.",
+        "build": "Deliberately overfit a small dataset, then fix it with each technique separately.",
+        "resources": [
+          {
+            "label": "Dive into Deep Learning: dropout",
+            "url": "https://d2l.ai/chapter_multilayer-perceptrons/dropout.html"
+          }
+        ]
+      },
+      {
+        "title": "Learning-rate schedules and warmup",
+        "understand": "Why almost every large model uses warmup followed by cosine decay.",
+        "build": "Run a learning-rate range test, then train with warmup plus cosine decay.",
+        "resources": [
+          {
+            "label": "Dive into Deep Learning: LR scheduling",
+            "url": "https://d2l.ai/chapter_optimization/lr-scheduler.html"
+          }
+        ]
+      },
+      {
+        "title": "Mixed precision training",
+        "understand": "Train faster with less memory using 16-bit floats, safely.",
+        "build": "Enable autocast and a gradient scaler; measure memory and speed before and after.",
+        "resources": [
+          {
+            "label": "PyTorch automatic mixed precision",
+            "url": "https://pytorch.org/docs/stable/amp.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Vision and generative models",
+    "intro": "Convolutions, residual connections, and the models that generate images.",
+    "lessons": [
+      {
+        "title": "Convolutions, intuitively",
+        "understand": "A convolution is a small shared filter slid across an image.",
+        "build": "Hand-code a 2D convolution and apply edge-detection kernels to a photo.",
+        "resources": [
+          {
+            "label": "CS231n: convolutional networks",
+            "url": "https://cs231n.github.io/convolutional-networks/"
+          }
+        ]
+      },
+      {
+        "title": "Train a CNN on CIFAR-10",
+        "understand": "Put convolutions, pooling, and a classifier head together.",
+        "build": "Reach 80% test accuracy on CIFAR-10 with a network you designed.",
+        "resources": [
+          {
+            "label": "PyTorch: training a classifier",
+            "url": "https://pytorch.org/tutorials/beginner/blitz/cifar10_tutorial.html"
+          }
+        ]
+      },
+      {
+        "title": "Residual networks",
+        "understand": "Skip connections let gradients reach early layers, so networks can go deep.",
+        "build": "Add residual blocks to your CNN and train 20- and 56-layer versions.",
+        "resources": [
+          {
+            "label": "ResNet paper",
+            "url": "https://arxiv.org/abs/1512.03385"
+          }
+        ]
+      },
+      {
+        "title": "Transfer learning",
+        "understand": "Start from a pretrained model and adapt it with little data.",
+        "build": "Fine-tune a pretrained ResNet on a small dataset you collected yourself.",
+        "resources": [
+          {
+            "label": "PyTorch: transfer learning tutorial",
+            "url": "https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html"
+          }
+        ]
+      },
+      {
+        "title": "Vision transformers",
+        "understand": "Treat image patches as tokens and use a plain transformer.",
+        "build": "Implement patch embedding and a small ViT; compare it with your CNN.",
+        "resources": [
+          {
+            "label": "ViT paper",
+            "url": "https://arxiv.org/abs/2010.11929"
+          }
+        ]
+      },
+      {
+        "title": "Contrastive learning and CLIP",
+        "understand": "Learn representations by pulling matching pairs together.",
+        "build": "Use a pretrained CLIP model for zero-shot classification on your own images.",
+        "resources": [
+          {
+            "label": "SimCLR paper",
+            "url": "https://arxiv.org/abs/2002.05709"
+          },
+          {
+            "label": "CLIP paper",
+            "url": "https://arxiv.org/abs/2103.00020"
+          }
+        ]
+      },
+      {
+        "title": "Diffusion models",
+        "understand": "Generate images by learning to reverse a gradual noising process.",
+        "build": "Train a tiny DDPM on MNIST and sample digits.",
+        "resources": [
+          {
+            "label": "DDPM paper",
+            "url": "https://arxiv.org/abs/2006.11239"
+          },
+          {
+            "label": "Lilian Weng: What are diffusion models?",
+            "url": "https://lilianweng.github.io/posts/2021-07-11-diffusion-models/"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Sequences and attention",
+    "intro": "From word vectors to the transformer, the architecture behind modern AI.",
+    "lessons": [
+      {
+        "title": "Embeddings and word2vec",
+        "understand": "Words become vectors where direction carries meaning.",
+        "build": "Train small word vectors and find nearest neighbors for ten words.",
+        "resources": [
+          {
+            "label": "word2vec paper",
+            "url": "https://arxiv.org/abs/1301.3781"
+          }
+        ]
+      },
+      {
+        "title": "RNNs and LSTMs",
+        "understand": "How models kept memory before attention, and where it broke down.",
+        "build": "Train a character-level LSTM and compare its samples with your MLP model.",
+        "resources": [
+          {
+            "label": "Chris Olah: Understanding LSTMs",
+            "url": "https://colah.github.io/posts/2015-08-Understanding-LSTMs/"
+          }
+        ]
+      },
+      {
+        "title": "Attention as a soft lookup",
+        "understand": "Queries, keys, and values: a differentiable dictionary.",
+        "build": "Implement scaled dot-product attention and visualize the attention weights.",
+        "resources": [
+          {
+            "label": "Bahdanau et al.: attention for translation",
+            "url": "https://arxiv.org/abs/1409.0473"
+          },
+          {
+            "label": "The Illustrated Transformer",
+            "url": "https://jalammar.github.io/illustrated-transformer/"
+          }
+        ]
+      },
+      {
+        "title": "The transformer block",
+        "understand": "Multi-head attention, MLP, residuals, and layer norm stacked together.",
+        "build": "Read the original paper alongside the annotated code, line by line.",
+        "resources": [
+          {
+            "label": "Attention Is All You Need",
+            "url": "https://arxiv.org/abs/1706.03762"
+          },
+          {
+            "label": "The Annotated Transformer",
+            "url": "https://nlp.seas.harvard.edu/annotated-transformer/"
+          }
+        ]
+      },
+      {
+        "title": "Positional information and RoPE",
+        "understand": "Attention ignores order, so position must be injected.",
+        "build": "Implement sinusoidal and rotary position embeddings and compare them.",
+        "resources": [
+          {
+            "label": "RoFormer (RoPE) paper",
+            "url": "https://arxiv.org/abs/2104.09864"
+          }
+        ]
+      },
+      {
+        "title": "Build a GPT from scratch",
+        "understand": "Everything so far, assembled into a working language model.",
+        "build": "Follow “Let's build GPT” and train a small model on text you choose.",
+        "resources": [
+          {
+            "label": "Zero to Hero: Let's build GPT",
+            "url": "https://karpathy.ai/zero-to-hero.html"
+          },
+          {
+            "label": "nanoGPT",
+            "url": "https://github.com/karpathy/nanoGPT"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Large language models",
+    "intro": "Tokenizers, scale, efficiency, and adapting big models to real tasks.",
+    "lessons": [
+      {
+        "title": "Tokenization",
+        "understand": "Byte-pair encoding and why tokenizers cause odd model behavior.",
+        "build": "Implement BPE training and encoding on a small corpus.",
+        "resources": [
+          {
+            "label": "minbpe",
+            "url": "https://github.com/karpathy/minbpe"
+          }
+        ]
+      },
+      {
+        "title": "Pretraining at scale",
+        "understand": "What GPT-2 and GPT-3 showed about next-token prediction.",
+        "build": "Read both papers and list which ideas are architecture and which are data or scale.",
+        "resources": [
+          {
+            "label": "GPT-2 paper (PDF)",
+            "url": "https://cdn.openai.com/better-language-models/language_models_are_unsupervised_multitask_learners.pdf"
+          },
+          {
+            "label": "GPT-3 paper",
+            "url": "https://arxiv.org/abs/2005.14165"
+          }
+        ]
+      },
+      {
+        "title": "Scaling laws",
+        "understand": "Loss improves predictably with parameters, data, and compute.",
+        "build": "Train four model sizes on the same data and fit a power law to final loss.",
+        "resources": [
+          {
+            "label": "Kaplan et al.: scaling laws",
+            "url": "https://arxiv.org/abs/2001.08361"
+          },
+          {
+            "label": "Chinchilla paper",
+            "url": "https://arxiv.org/abs/2203.15556"
+          }
+        ]
+      },
+      {
+        "title": "Reproduce GPT-2 small",
+        "understand": "A full pretraining run, end to end, on rented GPUs.",
+        "build": "Follow build-nanogpt and train a 124M-parameter model.",
+        "resources": [
+          {
+            "label": "build-nanogpt",
+            "url": "https://github.com/karpathy/build-nanogpt"
+          }
+        ]
+      },
+      {
+        "title": "Efficient attention and the KV cache",
+        "understand": "Why inference caches keys and values, and how FlashAttention saves memory.",
+        "build": "Add a KV cache to your GPT and measure the generation speedup.",
+        "resources": [
+          {
+            "label": "FlashAttention paper",
+            "url": "https://arxiv.org/abs/2205.14135"
+          }
+        ]
+      },
+      {
+        "title": "Fine-tuning with LoRA",
+        "understand": "Adapt a large model by training small low-rank matrices.",
+        "build": "Fine-tune a small open model with LoRA on an instruction dataset.",
+        "resources": [
+          {
+            "label": "LoRA paper",
+            "url": "https://arxiv.org/abs/2106.09685"
+          },
+          {
+            "label": "Hugging Face LLM course",
+            "url": "https://huggingface.co/learn/llm-course"
+          }
+        ]
+      },
+      {
+        "title": "Retrieval-augmented generation",
+        "understand": "Give a model facts at query time instead of training them in.",
+        "build": "Build a RAG pipeline over your own notes and measure answer accuracy.",
+        "resources": [
+          {
+            "label": "RAG paper",
+            "url": "https://arxiv.org/abs/2005.11401"
+          }
+        ]
+      },
+      {
+        "title": "Evaluating language models",
+        "understand": "Benchmarks, contamination, and why evals are hard.",
+        "build": "Run a standard benchmark on two models with the evaluation harness.",
+        "resources": [
+          {
+            "label": "EleutherAI lm-evaluation-harness",
+            "url": "https://github.com/EleutherAI/lm-evaluation-harness"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Reinforcement learning",
+    "intro": "Learning from reward instead of labels, the foundation for RLHF and agents.",
+    "lessons": [
+      {
+        "title": "MDPs, rewards, and returns",
+        "understand": "The formal setup: states, actions, rewards, and discounting.",
+        "build": "Write a gridworld environment from scratch with a step() function.",
+        "resources": [
+          {
+            "label": "Sutton & Barto (free book)",
+            "url": "http://incompleteideas.net/book/the-book-2nd.html"
+          }
+        ]
+      },
+      {
+        "title": "Value functions and dynamic programming",
+        "understand": "Compute how good each state is when you know the environment.",
+        "build": "Solve your gridworld with value iteration and draw the optimal policy.",
+        "resources": [
+          {
+            "label": "Sutton & Barto, ch. 3–4",
+            "url": "http://incompleteideas.net/book/the-book-2nd.html"
+          },
+          {
+            "label": "David Silver's RL course",
+            "url": "https://www.davidsilver.uk/teaching/"
+          }
+        ]
+      },
+      {
+        "title": "Q-learning and DQN",
+        "understand": "Learn values from experience, then scale up with neural networks.",
+        "build": "Train tabular Q-learning, then a DQN on CartPole.",
+        "resources": [
+          {
+            "label": "DQN paper",
+            "url": "https://arxiv.org/abs/1312.5602"
+          },
+          {
+            "label": "Gymnasium",
+            "url": "https://gymnasium.farama.org/"
+          }
+        ]
+      },
+      {
+        "title": "Policy gradients",
+        "understand": "Push up the probability of actions that led to high reward.",
+        "build": "Implement REINFORCE on CartPole and plot reward over episodes.",
+        "resources": [
+          {
+            "label": "Spinning Up: intro to policy optimization",
+            "url": "https://spinningup.openai.com/en/latest/spinningup/rl_intro3.html"
+          }
+        ]
+      },
+      {
+        "title": "Actor-critic and PPO",
+        "understand": "Stabilize policy gradients with a value baseline and clipped updates.",
+        "build": "Implement PPO and compare its stability with REINFORCE.",
+        "resources": [
+          {
+            "label": "PPO paper",
+            "url": "https://arxiv.org/abs/1707.06347"
+          },
+          {
+            "label": "Spinning Up: PPO",
+            "url": "https://spinningup.openai.com/en/latest/algorithms/ppo.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "Post-training and alignment",
+    "intro": "How pretrained models become helpful, honest assistants, and how we look inside them.",
+    "lessons": [
+      {
+        "title": "Instruction tuning",
+        "understand": "Supervised fine-tuning on demonstrations of the behavior you want.",
+        "build": "Fine-tune a small model on an instruction dataset and compare outputs before and after.",
+        "resources": [
+          {
+            "label": "InstructGPT paper",
+            "url": "https://arxiv.org/abs/2203.02155"
+          },
+          {
+            "label": "Hugging Face TRL",
+            "url": "https://huggingface.co/docs/trl"
+          }
+        ]
+      },
+      {
+        "title": "Reward models and RLHF",
+        "understand": "Learn human preferences, then optimize the policy against them with a KL leash.",
+        "build": "Train a reward model on a preference dataset and inspect what it rewards.",
+        "resources": [
+          {
+            "label": "RLHF book (Nathan Lambert)",
+            "url": "https://rlhfbook.com/"
+          }
+        ]
+      },
+      {
+        "title": "Direct preference optimization",
+        "understand": "Skip the reward model and train on preferences directly.",
+        "build": "Run DPO with TRL and compare it with your SFT model.",
+        "resources": [
+          {
+            "label": "DPO paper",
+            "url": "https://arxiv.org/abs/2305.18290"
+          }
+        ]
+      },
+      {
+        "title": "AI feedback and constitutions",
+        "understand": "Use a model to critique and revise itself against written principles.",
+        "build": "Write a five-rule constitution and run a critique-and-revise loop.",
+        "resources": [
+          {
+            "label": "Constitutional AI paper",
+            "url": "https://arxiv.org/abs/2212.08073"
+          }
+        ]
+      },
+      {
+        "title": "RL with verifiable rewards",
+        "understand": "Train reasoning by rewarding answers that can be checked automatically.",
+        "build": "Train a small model with GRPO on arithmetic problems.",
+        "resources": [
+          {
+            "label": "DeepSeekMath (GRPO) paper",
+            "url": "https://arxiv.org/abs/2402.03300"
+          }
+        ]
+      },
+      {
+        "title": "Interpretability starting points",
+        "understand": "Reverse-engineer what circuits inside a transformer compute.",
+        "build": "Use TransformerLens to find an induction head in a small model.",
+        "resources": [
+          {
+            "label": "Transformer Circuits thread",
+            "url": "https://transformer-circuits.pub/"
+          },
+          {
+            "label": "TransformerLens",
+            "url": "https://github.com/TransformerLensOrg/TransformerLens"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "module": "MLOps and research practice",
+    "intro": "Ship models, track experiments, and turn your work into research others can use.",
+    "lessons": [
+      {
+        "title": "Experiment tracking",
+        "understand": "Log every run's config and metrics so you can compare them later.",
+        "build": "Track twenty runs of a sweep and find the best config from the dashboard.",
+        "resources": [
+          {
+            "label": "MLflow docs",
+            "url": "https://mlflow.org/docs/latest/"
+          }
+        ]
+      },
+      {
+        "title": "Data and pipeline versioning",
+        "understand": "Version datasets alongside code so results are reproducible.",
+        "build": "Put a dataset and training pipeline under DVC with remote storage.",
+        "resources": [
+          {
+            "label": "DVC docs",
+            "url": "https://dvc.org/doc"
+          },
+          {
+            "label": "Made With ML",
+            "url": "https://madewithml.com/"
+          }
+        ]
+      },
+      {
+        "title": "Serving a model",
+        "understand": "Wrap a model in an API and package it in a container.",
+        "build": "Serve your CIFAR model with FastAPI inside a Docker image.",
+        "resources": [
+          {
+            "label": "FastAPI docs",
+            "url": "https://fastapi.tiangolo.com/"
+          },
+          {
+            "label": "Docker: get started",
+            "url": "https://docs.docker.com/get-started/"
+          }
+        ]
+      },
+      {
+        "title": "LLM inference at scale",
+        "understand": "Batching, paged KV caches, and throughput vs. latency.",
+        "build": "Serve an open model with vLLM and benchmark tokens per second.",
+        "resources": [
+          {
+            "label": "PagedAttention (vLLM) paper",
+            "url": "https://arxiv.org/abs/2309.06180"
+          },
+          {
+            "label": "vLLM docs",
+            "url": "https://docs.vllm.ai/"
+          }
+        ]
+      },
+      {
+        "title": "Reading papers efficiently",
+        "understand": "A three-pass method so you don't drown in the reading list.",
+        "build": "Read one paper a week for a month; write a five-sentence summary of each.",
+        "resources": [
+          {
+            "label": "Keshav: How to Read a Paper (PDF)",
+            "url": "https://web.stanford.edu/class/ee384m/Handouts/HowtoReadPaper.pdf"
+          }
+        ]
+      },
+      {
+        "title": "Reproduce a paper",
+        "understand": "The fastest way to learn a field is to rebuild one of its results.",
+        "build": "Pick a recent paper with a small experiment and reproduce its main table.",
+        "resources": [
+          {
+            "label": "Full Stack Deep Learning",
+            "url": "https://fullstackdeeplearning.com/"
+          }
+        ]
+      },
+      {
+        "title": "Write and share your work",
+        "understand": "Turn a reproduction or small idea into a write-up others can build on.",
+        "build": "Write a short report with code on GitHub; consider posting it to arXiv.",
+        "resources": [
+          {
+            "label": "arXiv: submission guide",
+            "url": "https://info.arxiv.org/help/submit/index.html"
+          }
+        ]
+      }
+    ]
+  }
+]
